@@ -4,7 +4,7 @@ from __future__ import annotations
 class Node:
 
     def __init__(self, value):
-        self.__previous = None
+        self.__next = None
         self.__value = value
 
     @property
@@ -16,12 +16,12 @@ class Node:
         self.__value = value
 
     @property
-    def previous(self):
-        return self.__previous
+    def next(self):
+        return self.__next
 
-    @previous.setter
-    def previous(self, node : Node):
-        self.__previous = node
+    @next.setter
+    def next(self, node : Node):
+        self.__next = node
 
     def __str__(self):
         return str(self.value)
@@ -30,29 +30,29 @@ class Node:
 class Stack:
 
     def __init__(self):
-        self.__top = None
+        self.__peek = None
 
     @property
-    def top(self):
-        return self.__top
+    def peek(self):
+        return self.__peek
 
-    @top.setter
-    def top(self, top : Node):
-        self.__top = top
+    @peek.setter
+    def peek(self, peek : Node):
+        self.__peek = peek
 
-    def remove(self):
-        self.top = self.top.previous
+    def pop(self):
+        self.peek = self.peek.next
 
-    def add(self, data):
+    def push(self, data):
         new = Node(data)
-        new.previous, self.top = self.top, new
+        new.next, self.peek = self.peek, new
 
     def to_list(self):
         as_list = []
-        current = self.top
-        while current.previous:
+        current = self.peek
+        while current.next:
             as_list.append(current.value)
-            current = current.previous
+            current = current.next
         return as_list
 
     def __str__(self):
