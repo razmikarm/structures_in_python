@@ -3,4 +3,5 @@
 Different data structures implemented in python
 
 1. Linked list
-2. Stack # TODO
+2. Queue
+3. Stack
