@@ -50,7 +50,7 @@ class Stack:
     def to_list(self):
         as_list = []
         current = self.peek
-        while current.next:
+        while current:
             as_list.append(current.value)
             current = current.next
         return as_list
